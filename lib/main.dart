@@ -1,64 +1,37 @@
-import 'package:first_app/result.dart';
 import 'package:flutter/material.dart';
-import './quiz.dart';
-import './questions.dart';
-import './result.dart';
+import 'Screens/home/tab_screen.dart';
+import 'Screens/profile/profile_screen.dart';
+import 'Screens/UserAccount/UserProfile.dart';
 
-class Myapp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return MyappState();
-  }
-}
+void main() => runApp(MyApp());
 
-class MyappState extends State {
-  var _i = 0;
-  void myanswer() {
-    var myans1 = "Ans1";
-    setState(() {
-      _i = _i + 1;
-    });
-    if (_i < a_qa_maps.length) {
-      print("My Answer is " + _i.toString());
-    } else {
-      print("My Answer is still  " + _i.toString());
-    }
-  }
-
-  final a_qa_maps = [
-    {
-      "Questions": "what is your name ",
-      "Ans": ["sanche", "Mache", "tests"]
-    },
-    {
-      "Questions": "what is your age ",
-      "Ans": ["30", "40", "50"]
-    },
-  ];
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Bartexts("Questioneer"),
-        ),
-        body: _i < a_qa_maps.length
-            ? Column(
-                children: [
-                  Bartexts('press button for a new question '),
-                  Quiz(
-                      answerQues: myanswer,
-                      questions: a_qa_maps,
-                      questindex: _i)
-                ],
-              )
-            : Result(),
-      ),
+      title: 'Care Patient App',
+      theme: ThemeData(
+          primarySwatch: Colors.purple,
+          primaryColor: Colors.purple,
+          accentColor: Colors.amber,
+          appBarTheme: AppBarTheme(
+              textTheme: ThemeData.light().textTheme.copyWith(
+                      headline6: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                  )))
+
+          //textTheme:const TextTheme(bodyText2: TextStyle(color: Colors.purple)),
+          ),
+      //This is Home screen
+      //home: MyHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (ctx) => TabsScreen(),
+        '/profile': (ctx) => ProfileScreen(
+            profilename: "XXXXX", email: "xxxx@hh.com", Phoneno: "2222222"),
+        '/bankdetails': (ctx) => BankingDetails(),
+      },
     );
   }
 }
-
-//Void main has only one function and so its equated as =>
-void main() => runApp(Myapp());
