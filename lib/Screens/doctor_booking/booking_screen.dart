@@ -6,7 +6,21 @@ class BookingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Select the Doctor'),
+          title: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            //mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.location_city),
+              Text(
+                "City",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+
           //iconTheme: ,
         ),
         body: Searchcards());

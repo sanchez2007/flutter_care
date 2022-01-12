@@ -40,13 +40,13 @@ class Maindrawer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          buildListTile("Profile", Icons.medical_services, () {
+          buildListTile("Account", Icons.face_retouching_natural, () {
             Navigator.of(context).pushNamed('/profile');
           }),
-          buildListTile("Account Details", Icons.account_balance, () {
+          buildListTile("My Bookings", Icons.list_alt_outlined, () {
             Navigator.of(context).pushNamed('/bankdetails');
           }),
-          buildListTile("Payments", Icons.money_off_csred_outlined, () {
+          buildListTile("Payments", Icons.money_sharp, () {
             Navigator.of(context).pushNamed('/profile');
           }),
         ],

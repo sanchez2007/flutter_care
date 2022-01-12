@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Screens/home/tab_screen.dart';
 import 'Screens/profile/profile_screen.dart';
 import 'Screens/UserAccount/UserProfile.dart';
+import 'Screens/Logon/auth_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       //home: MyHomePage(),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => TabsScreen(),
+        //  '/': (ctx) => TabsScreen(),
+        '/': (ctx) => AuthScreen(),
         '/profile': (ctx) => ProfileScreen(
             profilename: "XXXXX", email: "xxxx@hh.com", Phoneno: "2222222"),
         '/bankdetails': (ctx) => BankingDetails(),

@@ -49,7 +49,20 @@ class _MyAppState extends State<MyAppDropdwn> {
             }) ==
             -1) {
           items.add(DropdownMenuItem(
-            child: Text(wordPair),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    wordPair,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(wordPair + "rt"),
+                  Text(
+                    "DENTAL",
+                    style: TextStyle(fontWeight: FontWeight.w300),
+                  ),
+                ]),
             value: wordPair,
           ));
         }
@@ -79,10 +92,6 @@ class _MyAppState extends State<MyAppDropdwn> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white38,
-        border: Border.all(
-          color: Colors.lightGreenAccent,
-          width: 4,
-        ),
         borderRadius: BorderRadius.circular(4),
       ),
       child: SearchableDropdown.single(

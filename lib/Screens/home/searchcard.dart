@@ -12,7 +12,7 @@ class Searchcards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      //mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Column(
@@ -20,28 +20,21 @@ class Searchcards extends StatelessWidget {
             Column(
               children: <Widget>[
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.search_off_rounded),
+                    Icon(Icons.search_rounded),
                     Text(
                       "Search by Doc Name",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
                 MyAppDropdwn("Search by Doc Name", Setcheckdata),
-                TextButton(
-                    style: TextButton.styleFrom(
-                      primary: Colors.teal,
-                      shadowColor: Colors.white38,
-                      elevation: 10,
-                      side: BorderSide(color: Colors.blueGrey, width: 2),
-                      shape: const BeveledRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                    ),
+                ElevatedButton(
                     child: Text('check Availability'),
                     onPressed: () {
                       if (this.checkdata != null) {
@@ -53,36 +46,6 @@ class Searchcards extends StatelessWidget {
                       }
                     }),
 
-                //Searchcardview("Search by Doc Name", "Enter Doctor name"),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Icon(Icons.search_off_rounded),
-                    Text(
-                      "Search by Clinic Name",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                MyAppDropdwn("Search by clinic Name", Setcheckdata),
-                //Searchcardview("Search by Speciality Name", "Enter Speciality Name"),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Icon(Icons.search_off_rounded),
-                    Text(
-                      "Search by Speciality Name",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                MyAppDropdwn("Search by Sepciality ", Setcheckdata),
                 //Searchcardview("Search by Speciality", "Enter Speciality"),
               ],
             ),

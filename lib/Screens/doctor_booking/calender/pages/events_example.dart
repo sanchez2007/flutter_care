@@ -1,6 +1,7 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import '../utils.dart';
+import '../utils1.dart';
 
 class TableEventsExample extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     03,
     01,
   );
-  ValueNotifier<List<Event>> _selectedEvents = ValueNotifier([Event("")]);
+  ValueNotifier<List<Slot>> _selectedEvents = ValueNotifier([Slot("", "", "")]);
 
   @override
   void initState() {
@@ -43,7 +44,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     super.dispose();
   }
 
-  List<Event> _getEventsForDay(DateTime day) {
+  List<Slot> _getEventsForDay(DateTime day) {
     // Implementation example
     return kEvents[day] ?? [];
   }
@@ -59,42 +60,17 @@ class _TableEventsExampleState extends State<TableEventsExample> {
   }
 */
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
-    if (!isSameDay(_selectedDay, selectedDay)) {
-      setState(() {
-        _selectedDay = selectedDay;
-        _focusedDay = focusedDay;
-        _rangeSelectionMode = RangeSelectionMode.toggledOff;
-      });
-
-      _selectedEvents.value = _getEventsForDay(selectedDay);
-    }
-  }
-
-/*
-  void _onRangeSelected(DateTime start, DateTime end, DateTime focusedDay) {
+    //if (!isSameDay(_selectedDay, selectedDay)) {
     setState(() {
-      _selectedDay = DateTime(
-        2021,
-        03,
-        01,
-      );
-
+      _selectedDay = selectedDay;
       _focusedDay = focusedDay;
-      _rangeStart = start;
-      _rangeEnd = end;
-      _rangeSelectionMode = RangeSelectionMode.toggledOn;
+      _rangeSelectionMode = RangeSelectionMode.toggledOff;
     });
-  
-    // `start` or `end` could be null
-    if (start != null && end != null) {
-      _selectedEvents.value = _getEventsForRange(start, end);
-    } else if (start != null) {
-      _selectedEvents.value = _getEventsForDay(start);
-    } else if (end != null) {
-      _selectedEvents.value = _getEventsForDay(end);
-    }
+
+    _selectedEvents.value = _getEventsForDay(selectedDay);
+    //}
   }
-  */
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +79,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
       ),
       body: Column(
         children: [
-          TableCalendar<Event>(
+          TableCalendar<Slot>(
             firstDay: kFirstDay,
             lastDay: kLastDay,
             focusedDay: _focusedDay,
@@ -150,7 +126,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
           ),
           const SizedBox(height: 8.0),
           Expanded(
-            child: ValueListenableBuilder<List<Event>>(
+            child: ValueListenableBuilder<List<Slot>>(
               valueListenable: _selectedEvents,
               builder: (context, value, _) {
                 return ListView.builder(
@@ -167,10 +143,22 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                       ),
                       // Design slots
                       child: ListTile(
+                        selectedTileColor: Colors.limeAccent,
                         onTap: () => print('${value[index]}'),
                         title: Row(children: <Widget>[
+                          Icon(Icons.wb_sunny_rounded),
                           Text('${value[index]}'),
-                          TextButton(onPressed: () {}, child: Text("Presss"))
+                          TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                DateFormat('yyyy-MM-dd').format(_selectedDay),
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.red,
+                                  decorationStyle: TextDecorationStyle.wavy,
+                                ),
+                              ))
                         ]),
                       ),
                     );
